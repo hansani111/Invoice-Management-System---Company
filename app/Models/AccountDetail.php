@@ -12,8 +12,8 @@ class AccountDetail extends Model
     protected $table = "account_details";
 
     protected $fillable = [
-        // 'company_address_id',
-        'company_name',
+        'company_id',
+        // 'company_name',
         'account_holder_name',
         'account_number',
         'ifsc_code',
@@ -24,6 +24,11 @@ class AccountDetail extends Model
         'swift_code',
         'bank_address'
     ];
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
 
     // public function company()
     // {

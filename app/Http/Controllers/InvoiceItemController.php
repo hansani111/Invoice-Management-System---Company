@@ -42,10 +42,10 @@ class InvoiceItemController extends Controller
     public function createInvoiceItem(Request $request)
     {
         $request->validate([
-            'invoice_id' => 'required',
-            'description' => 'required',
-            'qty' => 'required',
-            'amount' => 'required',
+            // 'invoice_id' => 'required',
+            // 'description' => 'required',
+            // 'qty' => 'required',
+            // 'amount' => 'required',
         ]);
 
         $param = $request->all();
@@ -84,10 +84,10 @@ class InvoiceItemController extends Controller
     public function updateInvoiceItem(Request $request, $id)
     {
         $request->validate([
-            'invoice_id' => 'required',
-            'description' => 'required',
-            'qty' => 'required',
-            'amount' => 'required',
+            // 'invoice_id' => 'required',
+            // 'description' => 'required',
+            // 'qty' => 'required',
+            // 'amount' => 'required',
 
         ]);
 

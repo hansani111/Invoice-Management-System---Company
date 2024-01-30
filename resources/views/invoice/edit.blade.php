@@ -73,7 +73,7 @@
 
                                 <div class="col-md-4">
                                     <div class="form-group mb-3">
-                                        <label>Reference No</label>
+                                        <label>PO Ref No</label>
                                         <input type="text" name="reference_no" value="{{ $invoice->reference_no }}"
                                             class="form-control border" id="validationCustom02"
                                             placeholder="Enter Reference No">
@@ -82,7 +82,7 @@
 
                                 <div class="col-md-4">
                                     <div class="form-group mb-3">
-                                        <label>Reference Date</label>
+                                        <label>PO Ref Date</label>
                                         <input type="date" name="reference_date" value="{{ $invoice->reference_date }}"
                                             class="form-control border" id="validationCustom02">
                                     </div>
@@ -323,7 +323,7 @@
                 // GST Amount = Original Cost – (Original Cost * (100 / (100 + GST% ) ) ) 
                 // Net Price = Original Cost – GST Amount
 
-                var totalTax = cgstAmt;
+                var totalTax = cgstAmt + sgstAmt;
                 var netAmount = totalTax + totalAmount;
                 
 

@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('account_details', function (Blueprint $table) {
             $table->id();
             // $table->unsignedBigInteger('company_address_id');
+            $table->unsignedBigInteger('company_id'); // Foreign key column
             $table->string('company_name')->nullable();
             $table->string('account_holder_name')->nullable();
             $table->string('account_number')->nullable();
@@ -23,7 +24,9 @@ return new class extends Migration {
             $table->string('gst_no')->nullable();
             $table->string('swift_code')->nullable();
             $table->string('bank_address')->nullable();
-            $table->foreign('company_address_id')->references('id')->on('companies')->onDelete('cascade');
+            // $table->foreign('company_address_id')->references('id')->on('companies')->onDelete('cascade');
+            
+            $table->foreign('company_id')->references('id')->on('companies');
             $table->timestamps();
         });
     }

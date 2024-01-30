@@ -36,8 +36,8 @@
                                 <th>Invoice No</th>
                                 <th>Invoice Date</th>
 
-                                <th>Reference No</th>
-                                <th>Reference Date</th>
+                                <th>PO No</th>
+                                <th>PO Date</th>
                                 <th>Invoice Amount</th>
 
                                 <th>Invoice Items</th>

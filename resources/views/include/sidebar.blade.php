@@ -16,7 +16,7 @@
                 <li>
                     <a href="#sidebarEcommerce" data-toggle="collapse">
                         <i data-feather="users"></i>
-                        <span> Companies </span>
+                        <span> Company </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sidebarEcommerce">
@@ -37,7 +37,7 @@
                 <li>
                     <a href="#sidebarEcomme" data-toggle="collapse">
                         <i data-feather="users"></i>
-                        <span> Company A/c Details </span>
+                        <span> Company A/c Detail </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sidebarEcomme">
@@ -49,7 +49,7 @@
                             <li>
                                 <a href="{{ route('manage-account-details') }}"><i data-feather="list"
                                         class="pr-0 mr-1"></i>Manage
-                                    Companies A/c Details</a>
+                                    Companies A/c Detail</a>
                             </li>
                         </ul>
                     </div>
@@ -58,7 +58,7 @@
                 <li>
                     <a href="#sidebarCrm" data-toggle="collapse">
                         <i data-feather="edit"></i>
-                        <span> Invoices </span>
+                        <span> Invoice </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sidebarCrm">

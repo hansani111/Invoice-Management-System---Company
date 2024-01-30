@@ -28,4 +28,10 @@ class AppController extends Controller
         return redirect()->back()->withStatus('Record deleted successfully!!');
 
     }
+
+    public function practice(){
+
+        
+        return view('practice');
+    }
 }

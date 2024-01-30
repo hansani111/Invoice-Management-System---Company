@@ -26,8 +26,7 @@
             .two{
                 float:right;
                 height: auto; width:50%; 
-                /* padding-left: 50%; */
-                /* margin-left: 10%; */
+               
             }
     </style>
 </head>
@@ -35,11 +34,13 @@
     
     <div class="container-fluid" style="width:100%;">
        <div style="width:35%; height:auto; float:left;">
-        <h2 style="font-weight: bold;font-family: font-family: 'Work Sans', sans-serif" class="text-primary">MageBuddy</h2>
-        <h3>Connecting Ecommerce</h3>
+        {{-- <p style="font-size: 40px;font-weight: bold;font-family: font-family: 'Work Sans', sans-serif;">MageBuddy</p>
+        <p style="font-size: 20px;font-weight: bold;font-family: font-family: 'Work Sans', sans-serif;">Connecting Ecommerce</p> --}}
+        <h1 style="font-weight: bold;font-family: font-family: 'Work Sans', sans-serif" class="text-primary">MageBuddy</h1>
+        <h2 style="margin-top: -20px;">Connecting Ecommerce</h2>
 
        </div>
-       <div style="width:35%; height:auto; float:left; position:relative; ">
+       <div style="padding-left:7%;width:35%; height:auto; float:left; position:relative; ">
          <p>Magebuddy Commerce<br>
             M401, Shri Mahaganesh<br>
             Nagari, Mundhawa,Pune<br>
@@ -47,7 +48,7 @@
        </div>
            
        <div style="width:30%; height:auto; float:right; position:relative;">
-        {{-- <h3>Connecting Ecommerce</h3> --}}
+        
         <p> T +918237275700<br>
             E info@magebuddy.com<br>
             www.magebuddy.com</p>
@@ -56,7 +57,7 @@
     </div>
     <br><br><br><br><br><br>
     <div class="container-fluid">
-        <div style="width:100%; height:auto; top:70%;">
+        <div style="width:100%; height:auto; top:90%;">
             <hr style="height:2px;border-width:3px;color:black;background-color:black">
         </div>
     </div>
@@ -64,21 +65,31 @@
     <div class="one">
     <div class="card-body">
        
-            <h3>{{ $bill->company->name }}</h3>
-            {{-- <span style="font-weight: bold">{{ $bill->company->name }}<span><br> --}}
-            {{-- <span>Email : {{ $bill->company->email }}</span><br> --}}
+            <h2>{{ $bill->company->name }}</h2>
+    
+            @if ($bill->company->address_line_1)
             <span>{{ $bill->company->address_line_1 }}</span><br>
-            <span>{{ $bill->company->address_line_2 }}</span><br>
-            <span>{{ $bill->company->city }}, </span>
-            <span>{{ $bill->company->state }}</span>
-                {{-- <span>Country : {{ $bill->company->country }}</span><br> --}}
-
-                {{-- <span>Contact Number : $bill->company->contact_no</span><br> --}}
-
-              <span>- {{ $bill->company->pin_code }}</span><br><br>
+            @endif
             
+            @if ($bill->company->address_line_2)
+            <span>{{ $bill->company->address_line_2 }}</span><br>
+            @endif
+            
+            @if ($bill->company->city)
+            <span>{{ $bill->company->city }}, </span>
+            @endif
+            
+            @if ($bill->company->state)
+            <span>{{ $bill->company->state }}</span>
+            @endif
 
+            @if ($bill->company->pin_code)
+            <span>- {{ $bill->company->pin_code }}</span><br><br>
+            @endif
+            
+            @if ($bill->company->gst_no)
             <span style="font-weight: bold">GST No : {{ $bill->company->gst_no }}</span>
+            @endif
             
         </div>
 
@@ -86,35 +97,33 @@
    
     <div class="two" >
         <div class="card-header">
-            <h2 style="padding-left: 30%;font-weight: bold;font-family: font-family: 'Work Sans', sans-serif; color: #879df4">
+            <h2 style="padding-left: 70%;font-weight: bold;font-family: font-family: 'Work Sans', sans-serif; color: #879df4">
                 INVOICE
             </h2>               
         </div>
         <div class="card-body">
-            <table class="table" style="padding-left: 30%;">
+            <table class="table" style="padding-left: 30%;width:100%;">
      
                 <tr>
-                    <td>Invoice No</td>
-                    <td>{{ $bill->invoice_no }}</td>
+                    <td style="padding: 6px;">Invoice No</td>
+                    <td style="padding: 6px;">{{ $bill->invoice_no }}</td>
                 </tr>
                 <tr>
-                    <td>Invoice Date</td>
-                    <td>{{ $bill->invoice_date }}</td>
+                    <td style="padding: 6px;">Invoice Date</td>
+                    <td style="padding: 6px;">{{ $bill->invoice_date }}</td>
                 </tr>
     
-                <!-- Check if reference number is present -->
                 @if ($bill->reference_no)
                     <tr>
-                        <td>Reference No</td>
-                        <td>{{ $bill->reference_no }}</td>
+                        <td style="padding: 6px;">PO No</td>
+                        <td style="padding: 6px;">{{ $bill->reference_no }}</td>
                     </tr>
                 @endif
     
-                <!-- Check if reference date is present -->
                 @if ($bill->reference_date)
                     <tr>
-                        <td>Reference Date</td>
-                        <td>{{ $bill->reference_date }}</td>
+                        <td style="padding: 6px;">PO Date</td>
+                        <td style="padding: 6px;">{{ $bill->reference_date }}</td>
                     </tr>
                 @endif
     
@@ -124,106 +133,110 @@
 
     </div>
     </div>
-    <div class="container-fluid"style="position:relative; top:8%;">
+    <div class="container-fluid"style="position:relative; top:9%;">
     
-        <div class="card" style="position:relative; top:15%; left: 0; width:100%; height:auto">
+        <div class="card" style="position:relative; top:15%; left: 0; width:100%;">
             <div class="card-body">
-                <table class="table" style="width: 100%; height:auto;">
-                    <tr class="bg-blue">
-                        <th colspan="2">Description</th>
-                        <th>Quantity</th>
-                        <th>Amount</th>
+                <table class="table" style="width: 100%;">
+                    <tr style="background-color: #b7d6f0;">
+                        <th colspan="2" style="width:30%;padding: 10px;">Description</th>
+                        <th style="width:10%;padding: 10px;">Quantity/Hrs</th>
+                        <th style="width:10%;padding: 10px;">Amount(Rs)</th>
                     </tr>
                     @foreach ($bill->invoiceItems as $item)
-                        <tr>
-                            <td colspan="2">{{ $item->description }}</td>
-                            <td>{{ $item->qty }}</td>
-                            <td>{{ $item->amount }}</td>
+                        <tr class="bg-blue"> 
+                            <td colspan="2" style="padding: 10px;">{{ $item->description }}</td>
+
+                            <td style="padding: 10px;margin:0%">
+                                @if ($item->qty)
+                                    {{ $item->qty }}
+                                @endif
+                            </td>
+                            <td style="padding: 10px;">{{ $item->amount }}</td>
                         </tr>
                     @endforeach
-
-                    @if ($bill->cgst_rate)
+                    @if($bill->company->country == "India")
                     <tr>
-                        <td rowspan="4" colspan="2"
-                            style="font-weight: bold;font-family: font-family: 'Work Sans', sans-serif">Thank you
+                        <?php
+                        if($bill->cgst_rate){
+                            $rows=3;
+                        }
+                        else {
+                            $rows =2;
+                        }
+                        ?>
+
+                        <td rowspan="{{$rows}}" colspan="2"
+                            style="padding: 20px;font-weight: bold;font-family: font-family: 'Work Sans', sans-serif">Thank you
                             for your
                             buisness!!</td>
-                        <td style="font-weight: bold">CGST 9%</td>
+                        @if($bill->company->country == "India")
+                            @if ($bill->cgst_rate)                    
+                        <td style="padding: 10px;font-weight: bold">CGST 9%</td>
                         <td>{{ $bill->cgst_rate }}</td>
+                        @endif 
+                        @if ($bill->igst_rate) 
+                        <td style="padding: 10px;font-weight: bold">IGST 18%</td>
+                        <td>{{ $bill->igst_rate }}</td>
+                        @endif                  
                     </tr>
-                    @endif
-
-
-                    {{-- <tr>
-                        <td rowspan="4" colspan="2"
-                            style="font-weight: bold;font-family: font-family: 'Work Sans', sans-serif">Thank you
-                            for your
-                            buisness!!</td>
-                        <td style="font-weight: bold">CGST 9%</td>
-                        <td>{{ $bill->cgst_rate }}</td>
-                    </tr> --}}
-
-                    @if ($bill->sgst_rate)
+                    @if( $bill->sgst_rate)
                     <tr>
-                        <td style="font-weight: bold">SGST 9%</td>
+                        <td style="padding: 10px;font-weight: bold">SGST 9%</td>
                         <td>{{ $bill->sgst_rate }}</td>
                     </tr>
                     @endif
-
-                    {{-- <tr>
-                        <td style="font-weight: bold">SGST 9%</td>
-                       <td>{{ $bill->sgst_rate }}</td>
-                    </tr> --}}
-
-                    @if ($bill->igst_rate)
-                    <tr>
-                        <td rowspan="4" colspan="2"
-                            style="font-weight: bold;font-family: font-family: 'Work Sans', sans-serif">Thank you
-                            for your
-                            buisness!!</td>
-                        <td style="font-weight: bold">IGST 18%</td>
-                        <td>{{ $bill->igst_rate }}</td>
-                    </tr>
                     @endif
-
-                    {{-- <tr>
-                        <td style="font-weight: bold">IGST 18%</td>
-                        <td>{{ $bill->igst_rate }}</td>
-                    </tr> --}}
-
                     <tr>
-                        <td style="font-weight: bold">Total</td>
+                        <td style="padding: 10px;font-weight: bold">Total</td>
                         <td>{{ $bill->total_gst }}</td>
                     </tr>
+                @else
+                <tr>
+                    <td rowspan="" colspan="2"
+                    style="padding: 20px;font-weight: bold;font-family: font-family: 'Work Sans', sans-serif">Thank you
+                    for your
+                    buisness!!</td> <td style="padding: 10px;font-weight: bold">Total</td>
+                    <td>{{ $bill->total_gst }}</td>
+                </tr>
+                @endif
+
 
                 </table>
             </div>
         </div>
     </div>
-    <div class="container-fluid" style="position:relative; top:23%; border:2px solid rgb(32, 29, 29);width:50%;height:auto">
+    
+    <div class="container-fluid" style="position:relative; top:25%; border:2px solid rgb(32, 29, 29);width:70%;height:auto">
         <div class="card">
             <div class="card-header">
-                <h4 style="font-weight: bold;font-family: 'Work Sans', sans-serif;padding-left:10%;">Account
-                    Details
-                </h4>
+                <h3 style="font-weight: bold;font-family: 'Work Sans', sans-serif;padding-left:2%;">Account Details</h3>
             </div>
-            <div class="card-body" style="padding-left:10%;">
-                <span>Account Holder name : {{ $accountDetail->account_holder_name }}<span><br>
-                    <span>Account Number : {{ $accountDetail->account_number }}</span><br>
-                    <span>IFSC : {{ $accountDetail->ifsc_code }}</span><br>
-                    <span>Branch : {{ $accountDetail->branch }}</span><br>
-                    <span>Account Type : {{ $accountDetail->account_type }}</span><br>
-                    <span>PAN No : {{ $accountDetail->pan_no }}</span><br>
+            <div class="card-body" style="padding-left:2%;">
+
+                    <span>Account Holder name : {{ isset($accountDetail->account_holder_name)?$accountDetail->account_holder_name:'' }}<span><br>
                     
-                    <span>Bank Address : {{ $accountDetail->bank_address }}</span><br>
+                    <span>Account Number : {{ isset($accountDetail->account_number)?$accountDetail->account_number:'' }}</span><br>
+                   
+                    <span>IFSC : {{ isset($accountDetail->ifsc_code)?$accountDetail->ifsc_code:'' }}</span><br>
+                  
+                    <span>Branch : {{ isset($accountDetail->branch)?$accountDetail->branch:'' }}</span><br>
+                  
+                    <span>Account Type : {{ isset($accountDetail->account_type)?$accountDetail->account_type:'' }}</span><br>
+                   
+                    <span>PAN No : {{isset($accountDetail->pan_no)?$accountDetail->pan_no:"" }}</span><br>
+                   
+                    <span>Bank Address : {{ isset($accountDetail->bank_address)?$accountDetail->bank_address:'' }}</span><br>
                     
-                    <span>Swift Code : {{ $accountDetail->swift_code }}</span><br>
+                    <span>Swift Code : {{ isset($accountDetail->swift_code)?$accountDetail->swift_code:'' }}</span><br>
                     
-                    <span style="font-weight: bold">GST No : {{ $accountDetail->gst_no }}</span>
+                    <span style="font-weight: bold">GST No : {{isset($accountDetail->gst_no)?$accountDetail->gst_no:'' }}</span><br><br>
+                   
                     
 
             </div>
         </div>
     </div>
+
    </body>
 </html>

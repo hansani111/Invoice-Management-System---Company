@@ -47,6 +47,21 @@
                                     </div>
                                 </div>
 
+                                {{-- <div class="col-md-4">
+                                    <div class="form-group mb-3">
+                                        <label for="validationCustom03">Country</label>
+                                        <input type="text" name="country" id="country" class="form-control border"
+                                            id="validationCustom02" placeholder="Enter Country">
+                                    </div>
+                                </div> --}}
+
+                                <div class="col-md-4">
+                                    <div class="form-group mb-3">
+                                        <label for="validationCustom03">Country</label>
+                                        <input type="text" id="country" name="country" class="form-control border" readonly>
+                                    </div>
+                                </div>
+
                                 <div class="col-md-4">
                                     <div class="form-group mb-3">
                                         <label>Invoice Date</label>
@@ -65,7 +80,7 @@
 
                                 <div class="col-md-4">
                                     <div class="form-group mb-3">
-                                        <label>Reference No</label>
+                                        <label>PO Ref No</label>
                                         <input type="text" name="reference_no" class="form-control border"
                                             id="validationCustom02" placeholder="Enter Reference No">
                                     </div>
@@ -73,7 +88,7 @@
 
                                 <div class="col-md-4">
                                     <div class="form-group mb-3">
-                                        <label>Reference Date</label>
+                                        <label>PO Ref Date</label>
                                         <input type="date" name="reference_date" class="form-control border"
                                             id="validationCustom02">
                                     </div>
@@ -129,21 +144,21 @@
                             <div class="row mt-0">
                                 
                                 <div class="col-md-3">
-                                    <label>CGST (%)</label>
+                                    <label>CGST (9%)</label>
                                     <input type="text" class="form-control border" placeholder="CGST Rate"
                                         name="cgst_rate" id="cgst">
 
                                 </div>
 
                                 <div class="col-md-3">
-                                    <label>SGST (%)</label>
+                                    <label>SGST (9%)</label>
                                     <input type="text" class="form-control border" placeholder="SGST Rate"
                                         name="sgst_rate" id="sgst">
 
                                 </div>
 
                                 <div class="col-md-3">
-                                    <label>IGST (%)</label>
+                                    <label>IGST (18%)</label>
                                     <input type="text" class="form-control border" placeholder="IGST Rate"
                                         name="igst_rate" id="igst">
 
@@ -208,6 +223,7 @@
                     success: function(response) {
                         // Assuming 'state' is the ID of your state input field
                         $('#state').val(response.state); // Update the state field value
+                        $('#country').val(response.country); // Update the country field value country
                     },
                     error: function(xhr) {
                         // Handle error if any
@@ -224,55 +240,74 @@
             // Function to calculate the total amount
             function calculateTotalAmount() {
                 let totalAmount = 0
-        $('.show_item').each(function() {
-       
-        var qty = $(this).find('.amount').val();
-        var price = $(this).find('.quantity').val();
-        var amount1 = (qty*price);
-        totalAmount +=amount1;
-        //console.log(totalAmount);
-         });
+                
+                $('.show_item').each(function() {
+        
+                var qty = $(this).find('.amount').val();
+                var price = $(this).find('.quantity').val();
+                var amount1 = (qty*price);
+                totalAmount +=amount1;
+                //console.log(totalAmount);
+
+            });
          
                 var state = $('#state').val();
+                var country = $('#country').val();
                 
-
                 // Update the invoice amount field
                 $("#invoiceAmountInput").val(totalAmount.toFixed(2));
 
+                var cgstRate = 0,
+                    sgstRate = 0,
+                    igstRate = 0;
 
-               
-                var cgstRate = 0,sgstRate = 0,igstRate = 0;
+                    if (country !== 'India') {
 
-            if (state == 'Maharashtra') {
-                cgstRate = 9;
-                sgstRate = 9;
-                var cgstAmt = (cgstRate / 100) * totalAmount;
-                var sgstAmt = (sgstRate / 100) * totalAmount;
-                $('#cgst').val(cgstAmt.toFixed(2));
-                $('#sgst').val(sgstAmt.toFixed(2));
+                        // No GST for companies outside India
+                        $("#cgst").val('0.00');
+                        $("#sgst").val('0.00');
+                        $("#igst").val('0.00');
 
-                // GST Amount = Original Cost – (Original Cost * (100 / (100 + GST% ) ) ) 
-                // Net Price = Original Cost – GST Amount
+                        // Check if the company is out of the country, set GST rates to 0
+                            // cgstRate = 0;
+                            // sgstRate = 0;
+                            // igstRate = 0;
 
-                var totalTax = cgstAmt;
-                var netAmount = totalTax + totalAmount;
-                
+                            // var totalTax = 0;
+                            // var netAmount = totalAmount;
+
+                    } else if (state == 'Maharashtra') {
+                            cgstRate = 9;
+                            sgstRate = 9;
+                            var cgstAmt = (cgstRate / 100) * totalAmount;
+                            var sgstAmt = (sgstRate / 100) * totalAmount;
+                            $('#cgst').val(cgstAmt.toFixed(2));
+                            $('#sgst').val(sgstAmt.toFixed(2));
+
+                            // GST Amount = Original Cost – (Original Cost * (100 / (100 + GST% ) ) ) 
+                            // Net Price = Original Cost – GST Amount
+
+                            var totalTax = cgstAmt + sgstAmt;
+                            var netAmount = totalTax + totalAmount;
 
             } else {
 
                 igstRate = 18;
                 var igstAmt = (igstRate / 100) * totalAmount;
                 $('#igst').val(igstAmt.toFixed(2));
-                var totalTax = igstAmt;
-                var netAmount = totalTax + totalAmount;
+                // var totalTax = igstAmt;
+                // var netAmount = totalTax + totalAmount;
 
             }
 
-            $("#totalAmountDisplay").text(totalAmount.toFixed(2));
-            $("#taxDisplay").text(totalTax.toFixed(2));
-            $("#taxAmount").val(totalTax.toFixed(2));
-            $("#netAmountDisplay").text(netAmount.toFixed(2));
-            $("#netAmount").val(netAmount.toFixed(2));
+                var totalTax = parseFloat($('#cgst').val()) + parseFloat($('#sgst').val()) + parseFloat($('#igst').val());
+                var netAmount = totalTax + totalAmount;
+
+                $("#totalAmountDisplay").text(totalAmount.toFixed(2));
+                $("#taxDisplay").text(totalTax.toFixed(2));
+                $("#taxAmount").val(totalTax.toFixed(2));
+                $("#netAmountDisplay").text(netAmount.toFixed(2));
+                $("#netAmount").val(netAmount.toFixed(2));
 
             }
 

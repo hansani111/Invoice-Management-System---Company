@@ -27,27 +27,27 @@
                             @csrf
 
                             <div class="row">
-                                {{-- <div class="col-md-4">
-                                    <div class="form-group mb-3">
-                                        <label>Company Name</label>
-                                        <select class="form-control border" name="company_address_id"
-                                            id="validationCustom01">
-                                            <option value="">Please select</option>
-                                            @foreach ($invoices as $invoice)
-                                                <option value="{{ $invoice->id }}">{{ $invoice->address }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div> --}}
 
-                                <div class="col-md-4">
+                                {{-- <div class="col-md-4">
                                     <div class="form-group mb-3">
                                         <label for="validationCustom01">Company Name</label>
                                         <input type="text" name="company_name" class="form-control border"
                                             id="validationCustom01" placeholder="Enter Company Name">
                                     </div>
-                                </div>
+                                </div> --}}
 
+                                {{-- company name dropdown --}}
+                                <div class="col-md-4">
+                                    <div class="form-group mb-3">
+                                        <label for="validationCustom01">Company Name</label>
+                                        <select class="form-control border" name="company_id" id="validationCustom01">
+                                            <option value="">Please select</option>
+                                            @foreach ($invoices as $company)
+                                                <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group mb-3">

@@ -53,16 +53,16 @@ class CompanyController extends Controller
 
 
         $request->validate([
-            'name' => 'required|string|min:2|max:255',
-            'address_line_1' => 'required',
-            'address_line_2' => 'required',
-            'state' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'country' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'contact_no' => 'required|numeric|min:10',
-            'pin_code' => 'required|digits:6',
-            'gst_no' => 'required|regex:/^\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d[Z]{1}[A-Z\d]{1}$/i',
+            // 'name' => 'required|string|min:2|max:255',
+            // 'address_line_1' => 'required',
+            // 'address_line_2' => 'required',
+            // 'state' => 'required|string|max:255',
+            // 'city' => 'required|string|max:255',
+            // 'country' => 'required|string|max:255',
+            // 'email' => 'required|email|max:255',
+            // 'contact_no' => 'required|numeric|min:10',
+            // 'pin_code' => 'required|digits:6',
+            // 'gst_no' => 'required|regex:/^\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d[Z]{1}[A-Z\d]{1}$/i',
         ]);
 
         $param = $request->all();
@@ -96,16 +96,16 @@ class CompanyController extends Controller
         // dd($request);
 
         $request->validate([
-            'name' => 'required|string|min:2|max:255',
-            'address_line_1' => 'required',
-            'address_line_2' => 'required',
-            'state' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'country' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'contact_no' => 'required|numeric|min:10',
-            'pin_code' => 'required|digits:6',
-            'gst_no' => 'required|regex:/^\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d[Z]{1}[A-Z\d]{1}$/i',
+            // 'name' => 'required|string|min:2|max:255',
+            // 'address_line_1' => 'required',
+            // 'address_line_2' => 'required',
+            // 'state' => 'required|string|max:255',
+            // 'city' => 'required|string|max:255',
+            // 'country' => 'required|string|max:255',
+            // 'email' => 'required|email|max:255',
+            // 'contact_no' => 'required|numeric|min:10',
+            // 'pin_code' => 'required|digits:6',
+            // 'gst_no' => 'required|regex:/^\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d[Z]{1}[A-Z\d]{1}$/i',
         ]);
 
         // Company::update($request->all());

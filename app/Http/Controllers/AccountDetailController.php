@@ -21,6 +21,7 @@ class AccountDetailController extends Controller
     public function addCompanyAccountDetail()
     {
         $invoices = Company::all();
+        // $companies = Company::all();
         return view('company-account-details.add', compact('invoices'));
     }
 
@@ -31,15 +32,15 @@ class AccountDetailController extends Controller
         $request->validate([
 
 
-            'company_name' => 'required|string|min:2|max:255',
-            'account_holder_name' => 'required|string|min:2|max:255',
-            'account_number' => 'required',
-            'ifsc_code' => 'required',
-            'branch' => 'required',
-            'account_type' => 'required',
-            'pan_no' => 'required',
-            'gst_no' => 'required',
-            'bank_address' => 'required',
+            // 'company_name' => 'required|string|min:2|max:255',
+            // 'account_holder_name' => 'required|string|min:2|max:255',
+            // 'account_number' => 'required',
+            // 'ifsc_code' => 'required',
+            // 'branch' => 'required',
+            // 'account_type' => 'required',
+            // 'pan_no' => 'required',
+            // 'gst_no' => 'required',
+            // 'bank_address' => 'required',
         ]);
 
         $param = $request->all();
@@ -57,7 +58,9 @@ class AccountDetailController extends Controller
 
     public function editCompanyAccountDetail($id)
     {
-        $accountDetail = AccountDetail::find($id);
+        // $accountDetail = AccountDetail::find($id);
+        $accountDetail = AccountDetail::with('company')->find($id);
+
         $companies = Company::all();
         return view('company-account-details.edit', compact('accountDetail', 'companies'));
     }
@@ -67,17 +70,17 @@ class AccountDetailController extends Controller
         // dd($request);
 
         $request->validate([
-            'company_name' => 'required|string|min:2|max:255',
+            // 'company_name' => 'required|string|min:2|max:255',
 
-            'account_holder_name' => 'required|string|min:2|max:255',
-            'account_number' => 'required',
-            'ifsc_code' => 'required',
-            'branch' => 'required',
-            'account_type' => 'required',
-            'pan_no' => 'required',
-            'gst_no' => 'required',
-            'swift_code' => 'required',
-            'bank_address' => 'required',
+            // 'account_holder_name' => 'required|string|min:2|max:255',
+            // 'account_number' => 'required',
+            // 'ifsc_code' => 'required',
+            // 'branch' => 'required',
+            // 'account_type' => 'required',
+            // 'pan_no' => 'required',
+            // 'gst_no' => 'required',
+            // 'swift_code' => 'required',
+            // 'bank_address' => 'required',
         ]);
 
         // Company::update($request->all());

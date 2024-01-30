@@ -32,11 +32,39 @@
                                 <div class="col-md-4">
                                     <div class="form-group mb-3">
                                         <label for="validationCustom01">Company Name</label>
+                                        <select class="form-control border" name="company_id" id="validationCustom01">
+                                            <option value="">Please select</option>
+                                            @foreach ($companies as $company)
+                                                <option value="{{ $company->id }}" {{ $accountDetail->company_id == $company->id ? 'selected' : '' }}>
+                                                    {{ $company->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                {{-- <div class="col-md-4">
+                                    <div class="form-group mb-3">
+                                        <label for="validationCustom01">Company Name</label>
                                         <input type="text" name="company_name" value="{{ $accountDetail->company_name }}"
                                             class="form-control border" id="validationCustom01"
                                             placeholder="Enter Company Name">
                                     </div>
-                                </div>
+                                </div> --}}
+
+                                {{-- <div class="col-md-4">
+                                    <div class="form-group mb-3">
+                                        <label for="validationCustom01">Company Name</label>
+                                        <select class="form-control border" name="company_id" id="validationCustom01">
+                                            <option value="">Please select</option>
+                                            @foreach ($companies as $company)
+                                                <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                                {{ $accountDetail->company_id == $company->id ? 'selected' : '' }}>
+                                                    {{ $company->name }}
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div> --}}
 
                                 {{-- <div class="col-md-4">
                                     <div class="form-group mb-3">
@@ -135,18 +163,26 @@
                                     </div>
                                 </div>
 
-
-
                                 <div class="col-md-4">
                                     <div class="form-group mb-3">
-                                        <label for="validationCustom03">Bank Address</label>
-                                        <input type="text" name="bank_address" value="{{ $accountDetail->bank_address }}"
-                                            class="form-control border" id="validationCustom02"
-                                            placeholder="Enter Bank Address">
+                                        <label for="validationCustom03">Swift Code</label>
+                                        <input type="text" name="swift_code" value="{{ $accountDetail->swift_code }}" class="form-control border"
+                                            id="validationCustom02" placeholder="Enter Swift Code">
                                     </div>
                                 </div>
 
+                            </div>
 
+                            <div class="row">
+
+                            <div class="col-md-4">
+                                <div class="form-group mb-3">
+                                    <label for="validationCustom03">Bank Address</label>
+                                    <input type="text" name="bank_address" value="{{ $accountDetail->bank_address }}"
+                                        class="form-control border" id="validationCustom02"
+                                        placeholder="Enter Bank Address">
+                                </div>
+                            </div>
 
                             </div>
 

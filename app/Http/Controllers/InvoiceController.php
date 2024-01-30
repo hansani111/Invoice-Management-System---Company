@@ -122,7 +122,6 @@ class InvoiceController extends Controller
 
     }
 
-
     private function generateInvoiceNumber()
     {
         // dd($request->invoice_no);
@@ -251,7 +250,10 @@ class InvoiceController extends Controller
 
 
         $bill = Invoice::where('id', $id)->with('company')->first();
-        $accountDetail = AccountDetail::first();
+        // dd($bill);
+        
+        $accountDetail = AccountDetail::where('company_id', $bill->company_id)->first();
+        // dd( $accountDetail);
 
         $invoiceItem = InvoiceItem::where('invoice_id', $bill->id)->first();
 
@@ -269,9 +271,15 @@ class InvoiceController extends Controller
     public function getState($companyId)
     {
         
-        $state = Company::where('id', $companyId)->value('state');
+        // $state = Company::where('id', $companyId)->value('state');
+        // return response()->json(['state' => $state]);
 
-        return response()->json(['state' => $state]);
+        $company = Company::findOrFail($companyId);
+    
+        return response()->json([
+            'state' => $company->state,
+            'country' => $company->country,
+        ]);
     }
 
 

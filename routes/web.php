@@ -76,4 +76,5 @@ Route::delete('/delete-invoice-item/{item}', [InvoiceItemController::class, 'del
 Route::get('/delete-invoice/{table}/{id}', [AppController::class, 'delete'])->name('delete-invoice');
 
 
+Route::get('/practice', [AppController::class, 'practice'])->name('practice');
 

@@ -51,7 +51,8 @@
                                 @foreach ($accountDetails as $index => $accountDetail)
                                     <tr>
                                         <td><b>{{ $index + 1 }}</b></td>
-                                        <td>{{ $accountDetail->company_name }}</td>
+                                        <td>{{ $accountDetail->company_id }}</td>
+                                        {{-- <td>{{ $accountDetail->company_name }}</td> --}}
                                         <td>{{ $accountDetail->account_holder_name }}</td>
                                         <td>{{ $accountDetail->account_number }}</td>
                                         <td>{{ $accountDetail->ifsc_code }}</td>

@@ -7,6 +7,35 @@
     <td>{{ $bill->reference_date }}</td>
 </tr>
 
+{{-- <div class="col-md-4">
+                                    <div class="form-group mb-3">
+                                        <label>Company Name</label>
+                                        <select class="form-control border" name="company_address_id"
+                                            id="validationCustom01">
+                                            <option value="">Please select</option>
+                                            @foreach ($invoices as $invoice)
+                                                <option value="{{ $invoice->id }}">{{ $invoice->address }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div> --}}
+
+                                
+
+                                {{-- <div class="col-md-4">
+                                    <div class="form-group mb-3">
+                                        <label>Company Name</label>
+                                        <select class="form-control border" name="company_name" id="company_name">
+                                            <option value="">Please select</option>
+                                            @foreach ($invoices as $invoice)
+                                                <option value="{{ $invoice->id }}">{{ $invoice->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div> --}}
+
+
+
 
 {{-- <td>
 
